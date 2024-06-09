@@ -18,3 +18,8 @@ exports.postLeaderboard = (req, res) => {
     res.status(201).send({ user });
   });
 };
+
+exports.deleteSingleUserOnLeaderboard = (req, res) => {
+  const { user_id } = req.params;
+  deleteSingleUserOnLeaderboard(user_id).then(() => {});
+};

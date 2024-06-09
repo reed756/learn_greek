@@ -1,4 +1,4 @@
-const app = require("./app");
+import app from "./app.mjs";
 
 app.listen(9090, () => {
   console.log(`Server is listening on port 9090...`);

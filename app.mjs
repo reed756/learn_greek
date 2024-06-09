@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
+import { getUsers, getUser } from "./controllers/users.controllers.mjs";
+import { getAlphabet, getCharacter } from "./controllers/alphabet.controllers.js";
+import { getLeaderboard, getSingleUserOnLeaderboard, postLeaderboard } from "./controllers/leaderboard.controllers.js";
 const app = express();
-const { getUsers, getUser } = require("./controllers/users.controllers");
-const { getAlphabet, getCharacter } = require("./controllers/alphabet.controllers");
-const { getLeaderboard, getSingleUserOnLeaderboard, postLeaderboard } = require("./controllers/leaderboard.controllers");
 
 app.use(express.json());
 
@@ -18,5 +18,6 @@ app.get("/api/alphabet/:alphabet_id", getCharacter);
 app.get("/api/leaderboard", getLeaderboard);
 app.get("/api/leaderboard/:user_id", getSingleUserOnLeaderboard);
 app.post("/api/leaderboard", postLeaderboard);
+// app.delete("/api/leaderboard/:user_id", deleteSingleUserOnLeaderboard);
 
-module.exports = app;
+export default app;

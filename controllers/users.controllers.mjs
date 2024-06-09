@@ -1,12 +1,12 @@
-const { selectUsers, selectUser } = require("../models/users.models.js");
+import { selectUsers, selectUser } from "../models/users.models.mjs";
 
-exports.getUsers = (req, res) => {
+export const getUsers = (req, res) => {
   selectUsers().then((users) => {
     res.status(200).send({ users });
   });
 };
 
-exports.getUser = (req, res) => {
+export const getUser = (req, res) => {
   const { user_id } = req.params;
   selectUser(user_id).then((user) => {
     res.status(200).send({ user });

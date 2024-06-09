@@ -2,10 +2,10 @@
   "name": "learn-greek",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost nodemon listen.js",
+    "dev": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost nodemon listen.mjs",
     "seed": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost node ./db/run-seed.js"
   },
   "author": "",
