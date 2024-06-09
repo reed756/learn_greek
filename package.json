@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek nodemon listen.js",
-    "seed": "PGDATABASE=learn_greek node ./db/run-seed.js"
+    "dev": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost nodemon listen.js",
+    "seed": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost node ./db/run-seed.js"
   },
   "author": "",
   "license": "ISC",
