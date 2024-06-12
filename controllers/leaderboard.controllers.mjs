@@ -1,4 +1,4 @@
-import { selectLeaderboard, selectSingleUserOnLeaderboard, insertLeaderboard, deleteLeaderboard } from "../models/leaderboard.models.mjs";
+import { selectLeaderboard, selectSingleUserOnLeaderboard, insertLeaderboard, deleteLeaderboard, updateLeaderboard } from "../models/leaderboard.models.mjs";
 
 export const getLeaderboard = (req, res) => {
   selectLeaderboard().then((users) => {
@@ -23,5 +23,13 @@ export const deleteSingleUserOnLeaderboard = (req, res) => {
   const { user_id } = req.params;
   deleteLeaderboard(user_id).then(() => {
     res.status(204).send({ msg: "User deleted!" });
+  });
+};
+
+export const updateScoreOnLeaderboard = (req, res) => {
+  const { score } = req.body;
+  const { user_id } = req.params;
+  updateLeaderboard(score, user_id).then((user) => {
+    res.status(200).send({ user });
   });
 };

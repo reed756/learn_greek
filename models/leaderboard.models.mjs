@@ -20,3 +20,8 @@ export const deleteLeaderboard = async (user_id) => {
   const result = await db.query("DELETE FROM leaderboard WHERE user_id = $1;", [user_id]);
   return result.rows[0];
 };
+
+export const updateLeaderboard = async (score, user_id) => {
+  const result = await db.query("UPDATE leaderboard SET score = $1 WHERE user_id = $2 RETURNING *;", [score, user_id]);
+  return result.rows[0];
+};
