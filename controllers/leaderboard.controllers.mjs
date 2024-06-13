@@ -1,35 +1,30 @@
 import { selectLeaderboard, selectSingleUserOnLeaderboard, insertLeaderboard, deleteLeaderboard, updateLeaderboard } from "../models/leaderboard.models.mjs";
 
-export const getLeaderboard = (req, res) => {
-  selectLeaderboard().then((users) => {
-    res.status(200).send({ users });
-  });
+export const getLeaderboard = async (req, res) => {
+  const users = await selectLeaderboard();
+  res.status(200).send({ users });
 };
 
-export const getSingleUserOnLeaderboard = (req, res) => {
+export const getSingleUserOnLeaderboard = async (req, res) => {
   const { user_id } = req.params;
-  selectSingleUserOnLeaderboard(user_id).then((user) => {
-    res.status(200).send({ user });
-  });
+  const user = await selectSingleUserOnLeaderboard(user_id);
+  res.status(200).send({ user });
 };
 
-export const postLeaderboard = (req, res) => {
-  insertLeaderboard(req.body).then((user) => {
-    res.status(201).send({ user });
-  });
+export const postLeaderboard = async (req, res) => {
+  const user = await insertLeaderboard(req.body);
+  res.status(201).send({ user });
 };
 
-export const deleteSingleUserOnLeaderboard = (req, res) => {
+export const deleteSingleUserOnLeaderboard = async (req, res) => {
   const { user_id } = req.params;
-  deleteLeaderboard(user_id).then(() => {
-    res.status(204).send({ msg: "User deleted!" });
-  });
+  const user = await deleteLeaderboard(user_id);
+  res.status(204).send({ user });
 };
 
-export const updateScoreOnLeaderboard = (req, res) => {
+export const updateScoreOnLeaderboard = async (req, res) => {
   const { score } = req.body;
   const { user_id } = req.params;
-  updateLeaderboard(score, user_id).then((user) => {
-    res.status(200).send({ user });
-  });
+  const user = await updateLeaderboard(score, user_id);
+  res.status(200).send({ user });
 };

@@ -1,14 +1,12 @@
 import { selectUsers, selectUser } from "../models/users.models.mjs";
 
-export const getUsers = (req, res) => {
-  selectUsers().then((users) => {
-    res.status(200).send({ users });
-  });
+export const getUsers = async (req, res) => {
+  const users = await selectUsers();
+  res.status(200).send({ users });
 };
 
-export const getUser = (req, res) => {
+export const getUser = async (req, res) => {
   const { user_id } = req.params;
-  selectUser(user_id).then((user) => {
-    res.status(200).send({ user });
-  });
+  const user = await selectUser(user_id);
+  res.status(200).send({ user });
 };
