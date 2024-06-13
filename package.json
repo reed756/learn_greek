@@ -4,15 +4,16 @@
   "description": "",
   "main": "app.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost nodemon listen.mjs",
-    "seed": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost node ./db/run-seed.js"
+    "seed": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost node ./db/run-seed.js",
+    "test": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0",
-    "nodemon": "^3.1.2"
+    "nodemon": "^3.1.2",
+    "supertest": "^7.0.0"
   },
   "dependencies": {
     "express": "^4.19.2",
