@@ -1,5 +1,5 @@
-const format = require("pg-format");
-const db = require("./index.js");
+import format from "pg-format";
+import db from "./index.js";
 
 const users = [
   ["James Reed", "reedandj1@gmail.com"],
@@ -63,10 +63,8 @@ const leaderboardInsertStr = format(
   leaderboard
 );
 
-exports.insertData = () => {
-  return db.query(usersInsertStr).then(() => {
-    return db.query(alphabetInsertStr).then(() => {
-      return db.query(leaderboardInsertStr);
-    });
-  });
+export const insertData = async () => {
+  await db.query(usersInsertStr);
+  await db.query(alphabetInsertStr);
+  return await db.query(leaderboardInsertStr);
 };

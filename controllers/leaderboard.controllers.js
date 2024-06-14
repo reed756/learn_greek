@@ -1,4 +1,4 @@
-import { selectLeaderboard, selectSingleUserOnLeaderboard, insertLeaderboard, deleteLeaderboard, updateLeaderboard } from "../models/leaderboard.models.mjs";
+import { selectLeaderboard, selectSingleUserOnLeaderboard, insertLeaderboard, deleteLeaderboard, updateLeaderboard } from "../models/leaderboard.models.js";
 
 export const getLeaderboard = async (req, res) => {
   const users = await selectLeaderboard();

@@ -1,7 +1,7 @@
 import express from "express";
-import { getUsers, getUser } from "./controllers/users.controllers.mjs";
-import { getAlphabet, getCharacter } from "./controllers/alphabet.controllers.mjs";
-import { getLeaderboard, updateScoreOnLeaderboard, getSingleUserOnLeaderboard, postLeaderboard, deleteSingleUserOnLeaderboard } from "./controllers/leaderboard.controllers.mjs";
+import { getUsers, getUser } from "./controllers/users.controllers.js";
+import { getAlphabet, getCharacter } from "./controllers/alphabet.controllers.js";
+import { getLeaderboard, updateScoreOnLeaderboard, getSingleUserOnLeaderboard, postLeaderboard, deleteSingleUserOnLeaderboard } from "./controllers/leaderboard.controllers.js";
 const app = express();
 
 app.use(express.json());

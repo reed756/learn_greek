@@ -1,14 +1,10 @@
-const { insertData } = require("./insert-data.js");
-const { dropTables, createTables } = require("./manage-tables.js");
+import { insertData } from "./insert-data.js";
+import { dropTables, createTables } from "./manage-tables.js";
 
-const seed = () => {
-  return dropTables()
-    .then(() => {
-      return createTables();
-    })
-    .then(() => {
-      return insertData();
-    });
+const seed = async () => {
+  await dropTables();
+  await createTables();
+  return await insertData();
 };
 
-module.exports = seed;
+export default seed;

@@ -1,11 +1,11 @@
-const db = require("./index.js");
+import db from "./index.js";
 
-exports.dropTables = () => {
+export const dropTables = () => {
   return db.query(`DROP TABLE IF EXISTS leaderboard;DROP TABLE IF EXISTS alphabet; DROP TABLE IF EXISTS users;
   `);
 };
 
-exports.createTables = () => {
+export const createTables = () => {
   return db.query(
     `CREATE TABLE alphabet (
       alphabet_id SERIAL PRIMARY KEY,

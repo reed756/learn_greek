@@ -1,4 +1,4 @@
-import { selectUsers, selectUser } from "../models/users.models.mjs";
+import { selectUsers, selectUser } from "../models/users.models.js";
 
 export const getUsers = async (req, res) => {
   const users = await selectUsers();

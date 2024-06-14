@@ -1,4 +1,4 @@
-import { selectAlphabet, selectCharacter } from "../models/alphabet.models.mjs";
+import { selectAlphabet, selectCharacter } from "../models/alphabet.models.js";
 
 export const getAlphabet = async (req, res) => {
   const characters = await selectAlphabet();
