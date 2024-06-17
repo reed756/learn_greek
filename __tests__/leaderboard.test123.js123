@@ -1,9 +1,0 @@
-// import seed from "../db/seed";
-// import data from "../db/data";
-// import app from "../app.js";
-
-// beforeEach(() => {
-//   return seed(data);
-// });
-
-// afterAll(() => connection.end());
