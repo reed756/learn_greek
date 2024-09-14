@@ -1,8 +1,11 @@
 import db from "./index.js";
 
 export const dropTables = () => {
-  return db.query(`DROP TABLE IF EXISTS leaderboard;DROP TABLE IF EXISTS alphabet; DROP TABLE IF EXISTS users;
-  `);
+  return db.query(
+    `DROP TABLE IF EXISTS alphabet; 
+     DROP TABLE IF EXISTS leaderboard;
+     DROP TABLE IF EXISTS users;`
+  );
 };
 
 export const createTables = () => {
