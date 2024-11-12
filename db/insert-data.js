@@ -64,7 +64,12 @@ const leaderboardInsertStr = format(
 );
 
 export const insertData = async () => {
-  await db.query(usersInsertStr);
-  await db.query(alphabetInsertStr);
-  return await db.query(leaderboardInsertStr);
+  return db
+    .query(usersInsertStr)
+    .then(() => {
+      return db.query(alphabetInsertStr);
+    })
+    .then(() => {
+      return db.query(leaderboardInsertStr);
+    });
 };

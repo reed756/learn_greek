@@ -5,8 +5,12 @@ export const getUsers = async (req, res) => {
   res.status(200).send({ users });
 };
 
-export const getUser = async (req, res) => {
-  const { user_id } = req.params;
-  const user = await selectUser(user_id);
-  res.status(200).send({ user });
+export const getUser = async (req, res, next) => {
+  try {
+    const { user_id } = req.params;
+    const user = await selectUser(user_id);
+    res.status(200).send({ user });
+  } catch (err) {
+    next(err);
+  }
 };
