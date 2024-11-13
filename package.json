@@ -12,9 +12,9 @@
     }
   },
   "scripts": {
-    "dev": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost nodemon --experimental-vm-modules listen.js",
-    "seed": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost node --experimental-vm-modules ./db/run-seed.js",
-    "test": "PGUSER=jamesreed PGPASSWORD=@mobile469 PGPORT=5432 PGDATABASE=learn_greek PGHOST=localhost node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "dev": "nodemon --experimental-vm-modules listen.js",
+    "seed": "node --experimental-vm-modules ./db/run-seed.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +24,7 @@
     "supertest": "^7.0.0"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "pg": "^8.11.5",
     "pg-format": "^1.0.4"
