@@ -1,5 +1,5 @@
-import { insertData } from "./insert-data.js";
-import { dropTables, createTables } from "./manage-tables.js";
+import { insertData } from "../insert-data.js";
+import { dropTables, createTables } from "../manage-tables.js";
 
 const seed = async ({ itemData }) => {
   return dropTables()
@@ -7,7 +7,7 @@ const seed = async ({ itemData }) => {
       return createTables();
     })
     .then(() => {
-      return insertData();
+      return insertData(itemData);
     });
 };
 

@@ -1,10 +1,19 @@
-import seed from "../db/seed.js";
+import seed from "../db/seeds/seed.js";
 import app from "../app.js";
 import db from "../db/index.js";
 import request from "supertest";
+import { alphabet } from "../db/data/test-data/alphabet.js";
+import { leaderboard } from "../db/data/test-data/leaderboard.js";
+import { users } from "../db/data/test-data/users.js";
+
+const itemData = {
+  alphabetData: alphabet,
+  leaderboardData: leaderboard,
+  userData: users,
+};
 
 beforeEach(() => {
-  return seed();
+  return seed({ itemData });
 });
 
 afterAll(() => db.end());
