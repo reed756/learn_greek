@@ -18,6 +18,18 @@ beforeEach(() => {
 
 afterAll(() => db.end());
 
+// NOT A ROUTE
+describe("GET /api/notaroute", () => {
+  it("responds with a 404 not found error", () => {
+    return request(app)
+      .get("/api/notaroute")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Route not found");
+      });
+  });
+});
+
 // ALPHABET ENDPOINTS
 describe("GET /api/alphabet", () => {
   it("responds with array containing all objects of greek alphabet", () => {
