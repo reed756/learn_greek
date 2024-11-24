@@ -69,6 +69,28 @@ describe("GET /api/alphabet/:id", () => {
   });
 });
 
+describe("GET /api/alphabet/notAnID", () => {
+  test("status:400, responds with an error message when passed a bad user ID", () => {
+    return request(app)
+      .get("/api/alphabet/notAnID")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Invalid input");
+      });
+  });
+});
+
+describe("GET /api/alphabet/999999999", () => {
+  test("status:404, responds with an error message that resource doesn't exist", () => {
+    return request(app)
+      .get("/api/alphabet/999999999")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("No character found for alphabet_id: 999999999");
+      });
+  });
+});
+
 // LEADERBOARD ENDPOINTS
 describe("GET /api/leaderboard", () => {
   it("Responds with array containing all users on the leaderboard", () => {
@@ -138,6 +160,17 @@ describe("GET /api/leaderboard/notAnID", () => {
   });
 });
 
+describe("GET /api/leaderboard/32767", () => {
+  test("status:404, responds with an error message that resource doesn't exist", () => {
+    return request(app)
+      .get("/api/leaderboard/32767")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("No score found for user_id: 32767");
+      });
+  });
+});
+
 // USERS ENDPOINTS
 describe("GET /api/users", () => {
   it("responds with array containing all users", () => {
@@ -182,6 +215,17 @@ describe("GET /api/users/notAnID", () => {
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe("Invalid input");
+      });
+  });
+});
+
+describe("GET /api/users/32767", () => {
+  test("status:404, responds with an error message that resource doesn't exist", () => {
+    return request(app)
+      .get("/api/users/32767")
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe("No user found for user_id: 32767");
       });
   });
 });

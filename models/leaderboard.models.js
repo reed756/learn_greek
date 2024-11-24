@@ -7,6 +7,7 @@ export const selectLeaderboard = async () => {
 
 export const selectSingleUserOnLeaderboard = async (user_id) => {
   const result = await db.query("SELECT * FROM leaderboard WHERE user_id = $1;", [user_id]);
+  if (!result.rows[0]) throw { status: 404, msg: `No score found for user_id: ${user_id}` };
   return result.rows[0];
 };
 

@@ -5,8 +5,12 @@ export const getAlphabet = async (req, res) => {
   res.status(200).send({ characters });
 };
 
-export const getCharacter = async (req, res) => {
-  const { alphabet_id } = req.params;
-  const character = await selectCharacter(alphabet_id);
-  res.status(200).send({ character });
+export const getCharacter = async (req, res, next) => {
+  try {
+    const { alphabet_id } = req.params;
+    const character = await selectCharacter(alphabet_id);
+    res.status(200).send({ character });
+  } catch (err) {
+    next(err);
+  }
 };
