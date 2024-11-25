@@ -15,9 +15,14 @@ export const getSingleUserOnLeaderboard = async (req, res, next) => {
   }
 };
 
-export const postLeaderboard = async (req, res) => {
-  const user = await insertLeaderboard(req.body);
-  res.status(201).send({ user });
+export const postLeaderboard = async (req, res, next) => {
+  try {
+    const user = await insertLeaderboard(req.body);
+    res.status(201).send({ user });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
 };
 
 export const deleteSingleUserOnLeaderboard = async (req, res) => {

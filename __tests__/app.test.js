@@ -75,7 +75,7 @@ describe("GET /api/alphabet/notAnID", () => {
       .get("/api/alphabet/notAnID")
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe("Invalid input");
+        expect(body.msg).toBe("Bad Request");
       });
   });
 });
@@ -149,13 +149,42 @@ describe("POST /api/leaderboard", () => {
   });
 });
 
+describe("POST /api/leaderboard", () => {
+  it("Returns a status code of 400 with malformed body", () => {
+    const emptyBody = {};
+    return request(app)
+      .post("/api/leaderboard")
+      .send(emptyBody)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request");
+      });
+  });
+});
+
+describe("POST /api/leaderboard", () => {
+  it("Returns a status code of 400 with request that fails schema validation", () => {
+    const badBody = {
+      score: 35000,
+      user_id: -5,
+    };
+    return request(app)
+      .post("/api/leaderboard")
+      .send(badBody)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request");
+      });
+  });
+});
+
 describe("GET /api/leaderboard/notAnID", () => {
   test("status:400, responds with an error message when passed a bad user ID", () => {
     return request(app)
       .get("/api/leaderboard/notAnID")
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe("Invalid input");
+        expect(body.msg).toBe("Bad Request");
       });
   });
 });
@@ -214,7 +243,7 @@ describe("GET /api/users/notAnID", () => {
       .get("/api/users/notAnID")
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe("Invalid input");
+        expect(body.msg).toBe("Bad Request");
       });
   });
 });
