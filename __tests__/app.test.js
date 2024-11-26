@@ -30,7 +30,7 @@ describe("GET /api/notaroute", () => {
   });
 });
 
-// ALPHABET ENDPOINTS
+// ALPHABET SUCCESS TESTS
 describe("GET /api/alphabet", () => {
   it("responds with array containing all objects of greek alphabet", () => {
     return request(app)
@@ -69,6 +69,7 @@ describe("GET /api/alphabet/:id", () => {
   });
 });
 
+// ALPHABET ERROR TESTS
 describe("GET /api/alphabet/notAnID", () => {
   test("status:400, responds with an error message when passed a bad user ID", () => {
     return request(app)
@@ -91,7 +92,7 @@ describe("GET /api/alphabet/999999999", () => {
   });
 });
 
-// LEADERBOARD ENDPOINTS
+// LEADERBOARD SUCCESS TESTS
 describe("GET /api/leaderboard", () => {
   it("Responds with array containing all users on the leaderboard", () => {
     return request(app)
@@ -149,6 +150,18 @@ describe("POST /api/leaderboard", () => {
   });
 });
 
+describe("DELETE /api/leaderboard", () => {
+  it("Returns a status code of 201 and the new comment in the body", () => {
+    return request(app)
+      .delete("/api/leaderboard/1")
+      .expect(204)
+      .then((response) => {
+        expect(response.body.msg).toBe(undefined);
+      });
+  });
+});
+
+// LEADERBOARD ERROR TESTS
 describe("POST /api/leaderboard", () => {
   it("Returns a status code of 400 with malformed body", () => {
     const emptyBody = {};
@@ -200,7 +213,7 @@ describe("GET /api/leaderboard/32767", () => {
   });
 });
 
-// USERS ENDPOINTS
+// USERS SUCCESS TESTS
 describe("GET /api/users", () => {
   it("responds with array containing all users", () => {
     return request(app)
@@ -237,6 +250,7 @@ describe("GET /api/users/:id", () => {
   });
 });
 
+// USERS ERROR TESTS
 describe("GET /api/users/notAnID", () => {
   test("status:400, responds with an error message when passed a bad user ID", () => {
     return request(app)
