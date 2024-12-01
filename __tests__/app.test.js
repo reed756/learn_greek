@@ -151,12 +151,30 @@ describe("POST /api/leaderboard", () => {
 });
 
 describe("DELETE /api/leaderboard", () => {
-  it("Returns a status code of 201 and the new comment in the body", () => {
+  it("Returns a status code of 204 and the new comment in the body", () => {
     return request(app)
       .delete("/api/leaderboard/1")
       .expect(204)
       .then((response) => {
         expect(response.body.msg).toBe(undefined);
+      });
+  });
+});
+
+describe("PATCH /api/leaderboard", () => {
+  it("Returns a status code of 200 and the new score in the body", () => {
+    const updateScore = {
+      score: 20,
+    };
+    return request(app)
+      .patch("/api/leaderboard/1")
+      .send(updateScore)
+      .expect(200)
+      .then((response) => {
+        expect(response.body.user).toMatchObject({
+          user_id: 1,
+          score: 20,
+        });
       });
   });
 });
@@ -209,6 +227,56 @@ describe("GET /api/leaderboard/32767", () => {
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe("No score found for user_id: 32767");
+      });
+  });
+});
+
+describe("DELETE /api/leaderboard/32767", () => {
+  test("status:404, responds with an error message that resource doesn't exist", () => {
+    return request(app)
+      .delete("/api/leaderboard/32767")
+      .expect(404)
+      .then((response) => {
+        expect(response.body.msg).toBe("Not Found");
+      });
+  });
+});
+
+describe("DELETE /api/leaderboard/notAnId", () => {
+  test("status:400, responds with an error message when passed a bad user ID", () => {
+    return request(app)
+      .delete("/api/leaderboard/notAnId")
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request");
+      });
+  });
+});
+
+describe("PATCH /api/leaderboard", () => {
+  it("Returns a status code of 400 with malformed body", () => {
+    const emptyBody = {};
+    return request(app)
+      .patch("/api/leaderboard/1")
+      .send(emptyBody)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request");
+      });
+  });
+});
+
+describe("PATCH /api/leaderboard", () => {
+  it("Returns a status code of 400 for incorrect type", () => {
+    const badBody = {
+      score: "hundred",
+    };
+    return request(app)
+      .patch("/api/leaderboard/1")
+      .send(badBody)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe("Bad Request");
       });
   });
 });

@@ -1,4 +1,5 @@
 import db from "../db/index.js";
+import { checkExists } from "../utils/utils.js";
 
 export const selectLeaderboard = async () => {
   const result = await db.query("SELECT * FROM leaderboard;");
@@ -18,6 +19,7 @@ export const insertLeaderboard = async (newUser) => {
 };
 
 export const deleteLeaderboard = async (user_id) => {
+  await checkExists("leaderboard", "user_id", user_id);
   const result = await db.query("DELETE FROM leaderboard WHERE user_id = $1;", [user_id]);
   return result.rows[0];
 };
