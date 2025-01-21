@@ -1,0 +1,32 @@
+{
+  "name": "learn-greek",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "env": {
+    "test": {
+      "plugins": [
+        "@babel/plugin-transform-modules-commonjs"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "nodemon --experimental-vm-modules listen.js",
+    "seed": "node --experimental-vm-modules ./db/seeds/run-seed.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.2",
+    "supertest": "^7.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "pg-format": "^1.0.4"
+  }
+}
