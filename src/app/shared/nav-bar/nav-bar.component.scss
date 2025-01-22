@@ -1,0 +1,22 @@
+@use '../../../styles.scss' as styles;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div__tool-bar {
+  background-color: styles.$base-blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100vw;
+  height: 54.5px;
+}
+
+.div--flex-center {
+  @include flex-center;
+  min-width: 200px;
+}
