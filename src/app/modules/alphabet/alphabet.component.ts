@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-alphabet',
   imports: [],
   templateUrl: './alphabet.component.html',
-  styleUrl: './alphabet.component.scss'
+  styleUrl: './alphabet.component.scss',
 })
-export class AlphabetComponent {
-
-}
+export class AlphabetComponent {}

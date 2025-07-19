@@ -1,18 +1,10 @@
 {
-  "experimentalTernaries": true,
-  "printWidth": 80,
-  "trailingComma": "es5",
+  "printWidth": 100,
   "tabWidth": 2,
-  "semi": false,
-  "singleQuote": true,
   "useTabs": false,
-  "quoteProps": "as-needed",
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
   "bracketSpacing": true,
-  "bracketSameLine": false,
-  "arrowParens": "always",
-  "proseWrap": "always",
-  "htmlWhitespaceSensitivity": "css",
-  "endOfLine": "lf",
-  "embeddedLanguageFormatting": "auto",
-  "singleAttributePerLine": true
+  "arrowParens": "avoid"
 }
