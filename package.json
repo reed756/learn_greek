@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --watch=false",
     "lint": "ng lint",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
     "prepare": "husky install"
@@ -14,8 +14,7 @@
   "lint-staged": {
     "src/**/*.{ts,html,scss}": [
       "prettier --write",
-      "ng lint",
-      "git add"
+      "ng lint --lint-file-patterns"
     ]
   },
   "private": true,
