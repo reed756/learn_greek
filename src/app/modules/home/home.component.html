@@ -1,2 +1,3 @@
-<app-card></app-card>
-<app-card></app-card>
+@for (card of cards(); track $index) {
+  <app-card [cardConfig]="card"></app-card>
+}
