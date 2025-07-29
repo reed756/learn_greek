@@ -13,13 +13,13 @@ import { CardComponent } from './card/card.component';
 export class HomeComponent {
   protected cards = signal([
     {
-      title: 'Learn the Greek Alphabet',
+      title: 'Greek Alphabet',
       description: 'Start your journey to learn the Greek Alphabet.',
       imageUrl: 'assets/images/greek-letters.jpg',
       link: '/alphabet',
     },
     {
-      title: 'See the Leaderboard',
+      title: 'Leaderboard',
       description: 'Check out the leaderboard to see how you rank against others.',
       imageUrl: 'assets/images/leaderboard.jpg',
       link: '/leaderboard',
