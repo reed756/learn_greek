@@ -3,4 +3,5 @@ export interface CardConfig {
   description: string;
   imageUrl: string;
   link: string;
+  linkText: string;
 }

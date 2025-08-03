@@ -13,6 +13,8 @@
         {{ cardConfig()?.description }}
       </p>
     </div>
-    <button [routerLink]="cardConfig()?.link" class="card__button">Go here</button>
+    <button [routerLink]="cardConfig()?.link" class="card__button">
+      {{ cardConfig()?.linkText }}
+    </button>
   </div>
 </article>
