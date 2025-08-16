@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AlphabetComponent } from './alphabet.component';
 
 describe('AlphabetComponent', () => {
@@ -9,6 +12,7 @@ describe('AlphabetComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AlphabetComponent],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlphabetComponent);

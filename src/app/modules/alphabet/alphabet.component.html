@@ -1,1 +1,24 @@
-<p>alphabet works!</p>
+<section>
+  <table>
+    <caption>
+      Greek Alphabet
+    </caption>
+    <button class="button btn_quiz">Quiz yourself</button>
+    <thead>
+      <tr>
+        <th scope="col">Letter</th>
+        <th scope="col">Sound</th>
+        <th scope="col">Pronunciation</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (letter of alphabetData(); track $index) {
+        <tr>
+          <th scope="row">{{ letter.greek_letter }}</th>
+          <td>{{ letter.phonetic_equivalent }}</td>
+          <td>{{ letter.pronounced_as }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

@@ -1,11 +1,12 @@
-import express from "express";
-import { apiRouter } from "./routes/api-router.js";
+import cors from 'cors';
+import express from 'express';
+import { apiRouter } from './routes/api-router.js';
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 // API
-app.use("/api", apiRouter);
+app.use('/api', apiRouter);
 
 app.use((err, req, res, next) => {
   if (err.status) {
@@ -14,18 +15,18 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  if (err.code === "22P02" || err.code === "23502" || err.code === "22003") {
-    res.status(400).send({ msg: "Bad Request" });
+  if (err.code === '22P02' || err.code === '23502' || err.code === '22003') {
+    res.status(400).send({ msg: 'Bad Request' });
   } else next(err);
 });
 
 app.use((err, req, res, next) => {
   console.log(err);
-  res.status(500).send({ msg: "Internal Server Error" });
+  res.status(500).send({ msg: 'Internal Server Error' });
 });
 
-app.all("*", (req, res) => {
-  res.status(404).send({ msg: "Route not found" });
+app.all('*', (req, res) => {
+  res.status(404).send({ msg: 'Route not found' });
 });
 
 export default app;
