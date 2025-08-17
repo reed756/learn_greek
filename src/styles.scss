@@ -9,11 +9,13 @@
   --text-black: #000;
   --background-white: #fff;
   --bright-blue: #1e88e5;
+  --light-grey: #f0f0f0;
 }
 
 body {
   margin: 0;
   padding: 0;
+  background: #f0f0f0;
 }
 
 .border-white {
@@ -68,7 +70,7 @@ nav {
 // CSS BUTTONS
 .button {
   border: 0;
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
   background: var(--bright-blue);
   color: white;
   font-family: -system-ui, sans-serif;

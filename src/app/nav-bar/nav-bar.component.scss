@@ -1,5 +1,4 @@
 .sidebar {
-  background: var(--base-blue);
   position: fixed;
   top: 0;
   left: 0;
@@ -8,6 +7,7 @@
   width: 200px;
   height: 100vh;
   padding: 1rem;
+  border-right: 2px solid var(--base-blue);
 }
 
 nav {
@@ -28,9 +28,8 @@ a {
 }
 
 .activebutton {
-  box-shadow: inset 0 1px 0 0 var(--base-beige);
   background: var(--base-light-blue);
-  border: 1px solid var(--base-light-blue);
+  border: 2px solid var(--base-orange);
   color: var(--base-orange);
   text-shadow: 0 1px 0 var(--base-blue);
 }
