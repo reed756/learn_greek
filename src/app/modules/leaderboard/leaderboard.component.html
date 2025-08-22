@@ -1,1 +1,25 @@
-<p>leaderboard works!</p>
+<section>
+  <table>
+    <caption>
+      Leaderboard
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">User</th>
+        <th scope="col">Score</th>
+        <th scope="col">Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of leaderboardData(); track $index) {
+        <tr>
+          <th scope="row">{{ user.leaderboard_id }}</th>
+          <td>{{ user.user_id }}</td>
+          <td>{{ user.score }}</td>
+          <td>{{ user.created_at | date }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

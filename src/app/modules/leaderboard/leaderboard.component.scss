@@ -1,0 +1,54 @@
+section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}
+
+caption {
+  caption-side: top;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+}
+
+thead th {
+  background: #f8f9fa;
+  color: #333;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+tbody th,
+tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background: #f1f5f9;
+}
+
+th[scope='row'] {
+  font-weight: 500;
+  color: #111;
+}

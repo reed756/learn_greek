@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { LeaderboardRecord, LeaderboardService } from './leaderboard.service';
 
 @Component({
   selector: 'app-leaderboard',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './leaderboard.component.html',
   styleUrl: './leaderboard.component.scss',
 })
-export class LeaderboardComponent {}
+export class LeaderboardComponent {
+  private leaderboard = inject(LeaderboardService);
+  protected leaderboardData = toSignal<LeaderboardRecord[]>(this.leaderboard.leaderboard$);
+}
