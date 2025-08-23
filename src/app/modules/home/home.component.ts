@@ -14,15 +14,15 @@ export class HomeComponent {
   protected cards = signal([
     {
       title: 'Greek Alphabet',
-      description: 'Start your journey to learn the Greek Alphabet.',
-      imageUrl: 'assets/images/greek-letters.jpg',
+      description: 'Learn the Greek Alphabet and then quiz yourself.',
+      imageUrl: 'assets/images/greek-letters.png',
       link: '/alphabet',
       linkText: 'Learn the Greek Alphabet',
     },
     {
       title: 'Leaderboard',
       description: 'Check out the leaderboard to see how you rank against others.',
-      imageUrl: 'assets/images/leaderboard.jpg',
+      imageUrl: 'assets/images/trophy.png',
       link: '/leaderboard',
       linkText: 'View Leaderboard',
     },

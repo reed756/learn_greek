@@ -111,26 +111,6 @@ p {
   background-color: var(--background-white);
 }
 
-.card__button {
-  padding: 0.75em 1.6em;
-  width: fit-content;
-  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
-  font-variant: small-caps;
-  font-weight: bold;
-  border-radius: 0.45em;
-  border: none;
-  background-color: var(--base-light-blue);
-  font-family: var(--font-title);
-  font-size: 1.125rem;
-  color: var(--text-white);
-  cursor: pointer;
-}
-
-.card__button:focus {
-  outline: 2px solid var(--background-white);
-  outline-offset: -5px;
-}
-
 @media (any-hover: hover) and (any-pointer: fine) {
   .card__content {
     transform: translateY(62%);
