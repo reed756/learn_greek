@@ -106,4 +106,8 @@ button:active {
   height: 100vh;
   margin-left: 200px;
   gap: 2.5rem;
+  @media screen and (width <= 1024px) {
+    flex-direction: column;
+    padding: 2.5rem 0;
+  }
 }
