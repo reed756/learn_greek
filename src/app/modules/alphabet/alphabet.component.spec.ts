@@ -23,4 +23,11 @@ describe('AlphabetComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('HTML', () => {
+    it('Should render a caption element with "Greek Alphabet" text', () => {
+      const caption = fixture.nativeElement.querySelector('caption');
+      expect(caption.textContent).toContain('Greek Alphabet');
+    });
+  });
 });
