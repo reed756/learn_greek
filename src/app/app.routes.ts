@@ -18,6 +18,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./modules/leaderboard/leaderboard.component').then(c => c.LeaderboardComponent),
   },
+  {
+    path: 'quiz',
+    title: 'quiz',
+    loadComponent: () => import('./modules/quiz/quiz.component').then(c => c.QuizComponent),
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: '**',

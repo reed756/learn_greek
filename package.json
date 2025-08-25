@@ -9,7 +9,8 @@
     "test": "ng test --watch=false",
     "lint": "ng lint",
     "format": "prettier --write \"src/**/*.{ts,html,scss}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "server": "cd server && npm run dev"
   },
   "lint-staged": {
     "src/**/*.{ts,html,scss}": [

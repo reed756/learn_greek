@@ -11,4 +11,8 @@ import { AlphabetService } from './alphabet.service';
 export class AlphabetComponent {
   private alphabet = inject(AlphabetService);
   protected alphabetData = toSignal(this.alphabet.alphabet$);
+
+  protected startQuiz() {
+    this.alphabet.startQuiz();
+  }
 }
