@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NavBarComponent } from './nav-bar.component';
-import { provideRouter, Router } from '@angular/router';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { HomeComponent } from '../modules/home/home.component';
+import { provideRouter, Router } from '@angular/router';
 import { AlphabetComponent } from '../modules/alphabet/alphabet.component';
+import { HomeComponent } from '../modules/home/home.component';
 import { LeaderboardComponent } from '../modules/leaderboard/leaderboard.component';
+import { NavBarComponent } from './nav-bar.component';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -19,9 +19,9 @@ describe('NavBarComponent', () => {
         provideRouter([
           { path: 'home', component: HomeComponent },
           { path: 'alphabet', component: AlphabetComponent },
-          { path: 'leaderboard', component: LeaderboardComponent },
-        ]),
-      ],
+          { path: 'leaderboard', component: LeaderboardComponent }
+        ])
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavBarComponent);
@@ -55,7 +55,7 @@ describe('NavBarComponent', () => {
   describe('CSS', () => {
     it('Each <a> tag should have class "button"', () => {
       const linkDe = navDe.queryAll(By.css('a'));
-      linkDe.forEach(link => {
+      linkDe.forEach((link) => {
         expect(link.nativeElement.classList).toContain('button');
       });
     });
@@ -66,7 +66,9 @@ describe('NavBarComponent', () => {
       const linkDe = navDe.query(By.css('[data-testid="learn-greek-link"]'));
       await linkDe.nativeElement.click();
       fixture.detectChanges();
-      expect(TestBed.inject(Router).url).withContext('should nav to /home').toEqual(`/home`);
+      expect(TestBed.inject(Router).url)
+        .withContext('should nav to /home')
+        .toEqual(`/home`);
     });
 
     it('Should navigate to /alphabet when "ALPHABET" link is clicked', async () => {
