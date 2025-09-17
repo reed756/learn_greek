@@ -7,7 +7,7 @@ import { CardConfig } from '../../../shared/interfaces/card';
   selector: 'app-card',
   imports: [RouterLink, NgOptimizedImage],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss',
+  styleUrl: './card.component.scss'
 })
 export class CardComponent {
   readonly cardConfig = input<CardConfig>();
