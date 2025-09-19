@@ -7,8 +7,8 @@ import { CardComponent } from './card/card.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   host: {
-    class: 'app-home',
-  },
+    class: 'app-home'
+  }
 })
 export class HomeComponent {
   protected cards = signal([
@@ -17,14 +17,15 @@ export class HomeComponent {
       description: 'Learn the Greek Alphabet and then quiz yourself.',
       imageUrl: 'assets/images/greek-letters.png',
       link: '/alphabet',
-      linkText: 'Learn the Greek Alphabet',
+      linkText: 'Learn the Greek Alphabet'
     },
     {
       title: 'Leaderboard',
-      description: 'Check out the leaderboard to see how you rank against others.',
+      description:
+        'Check out the leaderboard to see how you rank against others.',
       imageUrl: 'assets/images/trophy.png',
       link: '/leaderboard',
-      linkText: 'View Leaderboard',
-    },
+      linkText: 'View Leaderboard'
+    }
   ]);
 }

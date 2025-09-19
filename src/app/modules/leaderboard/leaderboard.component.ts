@@ -7,9 +7,11 @@ import { LeaderboardRecord, LeaderboardService } from './leaderboard.service';
   selector: 'app-leaderboard',
   imports: [DatePipe],
   templateUrl: './leaderboard.component.html',
-  styleUrl: './leaderboard.component.scss',
+  styleUrl: './leaderboard.component.scss'
 })
 export class LeaderboardComponent {
   private leaderboard = inject(LeaderboardService);
-  protected leaderboardData = toSignal<LeaderboardRecord[]>(this.leaderboard.leaderboard$);
+  protected leaderboardData = toSignal<LeaderboardRecord[]>(
+    this.leaderboard.leaderboard$
+  );
 }

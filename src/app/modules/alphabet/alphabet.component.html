@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (letter of alphabetData(); track $index) {
+      @for (letter of alphabetData.value(); track $index) {
         <tr>
           <th scope="row">{{ letter.greek_letter }}</th>
           <td>{{ letter.phonetic_equivalent }}</td>

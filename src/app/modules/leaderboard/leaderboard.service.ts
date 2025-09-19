@@ -11,7 +11,7 @@ export interface LeaderboardRecord {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LeaderboardService {
   private api = inject(ApiService);
@@ -21,6 +21,8 @@ export class LeaderboardService {
   getLeaderboard(): Observable<LeaderboardRecord[]> {
     return this.api
       .get<LeaderboardRecord>(environment.apiUrl + '/leaderboard')
-      .pipe(map(response => (response as { users: LeaderboardRecord[] }).users));
+      .pipe(
+        map((response) => (response as { users: LeaderboardRecord[] }).users)
+      );
   }
 }
