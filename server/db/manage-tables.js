@@ -1,8 +1,8 @@
-import db from "./index.js";
+import db from './index.js';
 
 export const dropTables = () => {
   return db.query(
-    `DROP TABLE IF EXISTS alphabet; 
+    `DROP TABLE IF EXISTS alphabet;
      DROP TABLE IF EXISTS leaderboard;
      DROP TABLE IF EXISTS users;`
   );
@@ -13,6 +13,8 @@ export const createTables = () => {
     `CREATE TABLE if not exists alphabet (
       alphabet_id SERIAL PRIMARY KEY,
       greek_letter VARCHAR(50) NOT NULL,
+      lower_case_letter VARCHAR(5) NOT NULL,
+      upper_case_letter VARCHAR(5) NOT NULL,
       phonetic_equivalent VARCHAR(50) NOT NULL,
       pronounced_as VARCHAR(50) NOT NULL
     );
