@@ -1,10 +1,8 @@
 <section>
   <h2>Greek Alphabet Quiz</h2>
   @for (question of quizQuestions(); track $index) {
-    <h3>Question {{ $index + 1 }} out of {{ quizQuestions().length }}</h3>
-    <p>Which letter is {{ question.correctLetter }}?</p>
-    @for (letter of question.options; track $index) {
-      <button>{{ letter.letter.greek_letter }}</button>
+    @if ($index === quizSession().currentQuestionIdx) {
+      <app-quiz-card [question]="question" [index]="$index"></app-quiz-card>
     }
   }
 </section>

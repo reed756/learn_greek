@@ -12,6 +12,11 @@ export interface QuizAnswer {
   correct: boolean;
 }
 
+export interface QuizSession {
+  currentQuestionIdx: number;
+  score: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +24,10 @@ export class QuizService {
   private readonly alphabet = inject(AlphabetService);
 
   public readonly quizQuestions = signal<QuizQuestion[]>([]);
+  public readonly quizSession = signal<QuizSession>({
+    currentQuestionIdx: 0,
+    score: 0
+  });
 
   public loadQuizQuestions(noOfQuestions: number): void {
     for (let i = 0; i < noOfQuestions; i++) {
