@@ -1,8 +1,16 @@
 <h3>Question {{ index()! + 1 }} out of {{ quizQuestions().length }}</h3>
 <p>Which letter is {{ question()?.correctLetter }}?</p>
 @for (letter of question()?.options; track $index) {
-  <button class="button">
+  <button
+    class="button"
+    (click)="selectAnswer(letter)"
+    [disabled]="feedback().length > 0"
+  >
     {{ letter.letter.upper_case_letter }} -
     {{ letter.letter.lower_case_letter }}
   </button>
 }
+
+<section>
+  <p>{{ feedback() }}</p>
+</section>

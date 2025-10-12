@@ -3,7 +3,7 @@ import { Alphabet, AlphabetService } from '../alphabet/alphabet.service';
 
 export interface QuizQuestion {
   correctLetter: string;
-  options: { letter: Alphabet; correct: boolean }[];
+  options: QuizAnswer[];
   correctOptionIdx: number;
 }
 
@@ -49,7 +49,16 @@ export class QuizService {
     const randomIndex = Math.floor(
       Math.random() * (this.alphabet.alphabetData.value()?.length as number)
     );
-    return this.alphabet.alphabetData.value()![randomIndex];
+    const correctLetter = this.alphabet.alphabetData.value()![randomIndex];
+    // Ensure we don't have the same letter twice in a quiz
+    while (
+      this.quizQuestions()
+        .map((q) => q.correctLetter)
+        .includes(correctLetter.greek_letter)
+    ) {
+      return this.pickRandomCorrectLetter();
+    }
+    return correctLetter;
   }
 
   private pickRandomWrongLetters(
@@ -87,5 +96,23 @@ export class QuizService {
       [options[i], options[j]] = [options[j], options[i]];
     }
     return options;
+  }
+
+  public selectAnswer(answer: QuizAnswer): void {
+    if (answer.correct) {
+      this.quizSession.update((val) => ({
+        ...val,
+        score: val.score + 1
+      }));
+    }
+    if (
+      this.quizSession().currentQuestionIdx <
+      this.quizQuestions().length - 1
+    ) {
+      this.quizSession.update((val) => ({
+        ...val,
+        currentQuestionIdx: val.currentQuestionIdx + 1
+      }));
+    }
   }
 }
