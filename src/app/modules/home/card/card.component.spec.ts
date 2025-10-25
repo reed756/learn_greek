@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgOptimizedImage } from '@angular/common';
 import { provideRouter } from '@angular/router';
-import { CardConfig } from '../../../shared/interfaces/card';
+import { CardConfig } from '@interfaces/card';
 import { CardComponent } from './card.component';
 
 describe('CardComponent', () => {

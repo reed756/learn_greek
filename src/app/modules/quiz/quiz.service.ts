@@ -1,68 +1,67 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { Alphabet, AlphabetService } from '../alphabet/alphabet.service';
-
-export interface QuizQuestion {
-  correctLetter: string;
-  options: QuizAnswer[];
-  correctOptionIdx: number;
-}
-
-export interface QuizAnswer {
-  letter: Alphabet;
-  correct: boolean;
-}
-
-export interface QuizSession {
-  currentQuestionIdx: number;
-  score: number;
-}
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { AlphabetService } from '../alphabet/alphabet.service';
+import { QuizSession, QuizQuestion, QuizAnswer } from '@interfaces/question';
+import { Alphabet } from '@interfaces/alphabet';
+import { SessionService } from '@services/session/session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   private readonly alphabet = inject(AlphabetService);
+  private readonly session = inject(SessionService);
 
-  public readonly quizQuestions = signal<QuizQuestion[]>([]);
   public readonly quizSession = signal<QuizSession>({
     currentQuestionIdx: 0,
     score: 0
   });
-
-  public loadQuizQuestions(noOfQuestions: number): void {
-    for (let i = 0; i < noOfQuestions; i++) {
-      const rightAnswer = this.pickRandomCorrectLetter();
-      const wrongAnswers = this.pickRandomWrongLetters(3);
-      const options = [...wrongAnswers, { letter: rightAnswer, correct: true }];
-      this.quizQuestions.update((val) => [
-        ...val,
-        {
-          correctLetter: rightAnswer.greek_letter,
-          options: this.shuffleOptions(options),
-          correctOptionIdx: options.findIndex((o) => o.correct)
-        }
-      ]);
+  public readonly quizQuestions = computed<QuizQuestion[]>(() => {
+    const storedQuestions = this.session.getItem('quizQuestions');
+    if (storedQuestions) {
+      return JSON.parse(storedQuestions) as QuizQuestion[];
+    } else {
+      return this.loadQuizQuestions(10);
     }
+  });
+
+  public loadQuizQuestions(noOfQuestions: number): QuizQuestion[] {
+    if (this.alphabet.alphabetData.value() === undefined) {
+      return [];
+    }
+    const quizQuestions: QuizQuestion[] = [];
+    for (let i = 0; i < noOfQuestions; i++) {
+      const rightAnswer = this.pickRandomCorrectLetter(quizQuestions);
+      const wrongAnswers = this.pickRandomWrongLetters(3, rightAnswer);
+      const options = [...wrongAnswers, { letter: rightAnswer, correct: true }];
+      quizQuestions.push({
+        correctLetter: rightAnswer.greek_letter,
+        options: this.shuffleOptions(options),
+        correctOptionIdx: options.findIndex((o) => o.correct)
+      });
+    }
+    this.session.setItem('quizQuestions', JSON.stringify(quizQuestions));
+    return quizQuestions;
   }
 
-  private pickRandomCorrectLetter(): Alphabet {
+  private pickRandomCorrectLetter(quizQuestions: QuizQuestion[]): Alphabet {
     const randomIndex = Math.floor(
       Math.random() * (this.alphabet.alphabetData.value()?.length as number)
     );
     const correctLetter = this.alphabet.alphabetData.value()![randomIndex];
     // Ensure we don't have the same letter twice in a quiz
     while (
-      this.quizQuestions()
+      quizQuestions
         .map((q) => q.correctLetter)
         .includes(correctLetter.greek_letter)
     ) {
-      return this.pickRandomCorrectLetter();
+      return this.pickRandomCorrectLetter(quizQuestions);
     }
     return correctLetter;
   }
 
   private pickRandomWrongLetters(
-    count: number
+    count: number,
+    rightAnswer: Alphabet
   ): { letter: Alphabet; correct: boolean }[] {
     const wrongLetters: { letter: Alphabet; correct: boolean }[] = [];
     for (let i = 0; i < count; i++) {
@@ -71,11 +70,12 @@ export class QuizService {
       while (
         wrongLetters.find(
           (l) => l.letter.greek_letter === wrongLetter.letter.greek_letter
-        )
+        ) ||
+        wrongLetter.letter.greek_letter === rightAnswer.greek_letter
       ) {
         wrongLetter.letter = this.pickRandomWrongLetter().letter;
       }
-      wrongLetters.push(this.pickRandomWrongLetter());
+      wrongLetters.push(wrongLetter);
     }
     return wrongLetters;
   }

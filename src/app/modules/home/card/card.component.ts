@@ -1,7 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CardConfig } from '../../../shared/interfaces/card';
+import { CardConfig } from '@interfaces/card';
 
 @Component({
   selector: 'app-card',

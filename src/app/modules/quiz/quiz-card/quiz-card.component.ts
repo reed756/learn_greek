@@ -1,5 +1,6 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { QuizAnswer, QuizQuestion, QuizService } from '../quiz.service';
+import { QuizService } from '../quiz.service';
+import { QuizQuestion, QuizAnswer } from '@interfaces/question';
 
 @Component({
   selector: 'app-quiz-card',

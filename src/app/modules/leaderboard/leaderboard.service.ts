@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { ApiService } from '../../shared/services/api/api.service';
+import { ApiService } from '@services/api/api.service';
 
 export interface LeaderboardRecord {
   leaderboard_id: number;
