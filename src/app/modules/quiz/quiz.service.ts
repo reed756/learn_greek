@@ -13,12 +13,16 @@ export class QuizService {
 
   public readonly quizSession = signal<QuizSession>({
     currentQuestionIdx: 0,
-    score: 0
+    score: 0,
+    finished: false
   });
   public readonly quizQuestions = computed<QuizQuestion[]>(() => {
     const storedQuestions = this.session.getItem('quizQuestions');
-    if (storedQuestions) {
+    if (storedQuestions && !this.quizSession().finished) {
       return JSON.parse(storedQuestions) as QuizQuestion[];
+    } else if (storedQuestions && this.quizSession().finished) {
+      this.session.removeItem('quizQuestions');
+      return this.loadQuizQuestions(10);
     } else {
       return this.loadQuizQuestions(10);
     }
@@ -104,6 +108,7 @@ export class QuizService {
         ...val,
         score: val.score + 1
       }));
+      this.session.setItem('quizSession', JSON.stringify(this.quizSession()));
     }
     if (
       this.quizSession().currentQuestionIdx <
@@ -113,6 +118,23 @@ export class QuizService {
         ...val,
         currentQuestionIdx: val.currentQuestionIdx + 1
       }));
+      this.session.setItem('quizSession', JSON.stringify(this.quizSession()));
+    } else {
+      this.quizSession.update((val) => ({
+        ...val,
+        finished: true
+      }));
+      this.session.setItem('quizSession', JSON.stringify(this.quizSession()));
     }
+  }
+
+  public retakeQuiz(): void {
+    this.session.removeItem('quizSession');
+    // Reset quiz session
+    this.quizSession.set({
+      currentQuestionIdx: 0,
+      score: 0,
+      finished: false
+    });
   }
 }

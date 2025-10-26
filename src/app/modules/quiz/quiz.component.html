@@ -1,8 +1,13 @@
 <section>
   <h2>Greek Alphabet Quiz</h2>
   @for (question of quizQuestions(); track $index) {
-    @if ($index === quizSession().currentQuestionIdx) {
+    @if (
+      $index === quizSession().currentQuestionIdx && !quizSession().finished
+    ) {
       <app-quiz-card [question]="question" [index]="$index"></app-quiz-card>
     }
+  }
+  @if (quizSession().finished) {
+    <app-quiz-results></app-quiz-results>
   }
 </section>

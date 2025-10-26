@@ -14,4 +14,5 @@ export interface QuizAnswer {
 export interface QuizSession {
   currentQuestionIdx: number;
   score: number;
+  finished: boolean;
 }

@@ -1,0 +1,8 @@
+<h3>
+  You got {{ quizSession().score }} out of
+  {{ quizService.quizQuestions().length }} correct
+</h3>
+<p>You can retake the quiz or review the alphabet again.</p>
+
+<button class="button" (click)="quizService.retakeQuiz()">Retake Quiz</button>
+<button class="button" (click)="goToAlphabet()">Review Alphabet</button>
