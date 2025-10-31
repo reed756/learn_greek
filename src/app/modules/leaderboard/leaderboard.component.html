@@ -15,7 +15,7 @@
       @for (user of leaderboardData(); track $index) {
         <tr>
           <th scope="row">{{ user.leaderboard_id }}</th>
-          <td>{{ user.user_id }}</td>
+          <td>{{ user.username }}</td>
           <td>{{ user.score }}</td>
           <td>{{ user.created_at | date }}</td>
         </tr>
