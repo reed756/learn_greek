@@ -11,12 +11,21 @@ export interface LeaderboardRecord {
   username: string;
 }
 
+export interface LeaderboardResponse {
+  users: LeaderboardRecord[];
+}
+
 export interface UserRecord {
   user: {
     user_id: number;
     name: string;
     email_address: string;
   };
+}
+
+export interface PostLeaderboardRecord {
+  user_id: string;
+  score: number;
 }
 
 @Injectable({
@@ -27,11 +36,11 @@ export class LeaderboardService {
 
   public leaderboard$: Observable<LeaderboardRecord[]> = this.getLeaderboard();
 
-  getLeaderboard(): Observable<LeaderboardRecord[]> {
+  public getLeaderboard(): Observable<LeaderboardRecord[]> {
     return this.api
-      .get<LeaderboardRecord>(environment.apiUrl + '/leaderboard')
+      .get<LeaderboardResponse>(environment.apiUrl + '/leaderboard')
       .pipe(
-        map((response) => (response as { users: LeaderboardRecord[] }).users),
+        map((response) => (response as LeaderboardResponse).users),
         switchMap((leaderboardRecords) => {
           const userDetailsObservables = leaderboardRecords.map((record) =>
             this.getUserDetails(record.user_id).pipe(
@@ -46,9 +55,23 @@ export class LeaderboardService {
       );
   }
 
-  getUserDetails(userId: number): Observable<UserRecord> {
+  public getUserDetails(userId: number): Observable<UserRecord> {
     return this.api
       .get<UserRecord>(environment.apiUrl + `/users/${userId}`)
       .pipe(map((response) => response as UserRecord));
+  }
+
+  public postToLeaderboard(
+    user_id: string,
+    score: number
+  ): Observable<PostLeaderboardRecord> {
+    const payload = {
+      user_id,
+      score
+    };
+    return this.api.post<PostLeaderboardRecord>(
+      environment.apiUrl + '/leaderboard',
+      payload
+    );
   }
 }

@@ -4,5 +4,23 @@
 </h3>
 <p>You can retake the quiz or review the alphabet again.</p>
 
+<p>Post your score to the leaderboard</p>
+<form [formGroup]="postLeaderboardForm">
+  <label for="name"></label>
+  <input
+    id="name"
+    type="text"
+    formControlName="name"
+    defaultValue="Test User"
+  />
+  <button
+    class="button"
+    (click)="postToLeaderboard()"
+    [disabled]="postLeaderboardForm.invalid"
+  >
+    Post Score
+  </button>
+</form>
+
 <button class="button" (click)="quizService.retakeQuiz()">Retake Quiz</button>
 <button class="button" (click)="goToAlphabet()">Review Alphabet</button>
