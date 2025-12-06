@@ -23,7 +23,6 @@ describe('NavBarComponent', () => {
         ])
       ]
     }).compileComponents();
-
     fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
     navDe = fixture.debugElement;
@@ -64,29 +63,23 @@ describe('NavBarComponent', () => {
   describe('routing', () => {
     it('Should navigate to /home when "LEARN GREEK" link is clicked', async () => {
       const linkDe = navDe.query(By.css('[data-testid="learn-greek-link"]'));
-      await linkDe.nativeElement.click();
-      fixture.detectChanges();
-      expect(TestBed.inject(Router).url)
-        .withContext('should nav to /home')
-        .toEqual(`/home`);
+      linkDe.nativeElement.click();
+      await fixture.whenStable();
+      expect(TestBed.inject(Router).url).toEqual(`/home`);
     });
 
     it('Should navigate to /alphabet when "ALPHABET" link is clicked', async () => {
       const linkDe = navDe.query(By.css('[data-testid="alphabet-link"]'));
-      await linkDe.nativeElement.click();
-      fixture.detectChanges();
-      expect(TestBed.inject(Router).url)
-        .withContext('should nav to /alphabet')
-        .toEqual(`/alphabet`);
+      linkDe.nativeElement.click();
+      await fixture.whenStable();
+      expect(TestBed.inject(Router).url).toEqual(`/alphabet`);
     });
 
     it('Should navigate to /leaderboard when "LEADERBOARD" link is clicked', async () => {
       const linkDe = navDe.query(By.css('[data-testid="leaderboard-link"]'));
-      await linkDe.nativeElement.click();
-      fixture.detectChanges();
-      expect(TestBed.inject(Router).url)
-        .withContext('should nav to /leaderboard')
-        .toEqual(`/leaderboard`);
+      linkDe.nativeElement.click();
+      await fixture.whenStable();
+      expect(TestBed.inject(Router).url).toEqual(`/leaderboard`);
     });
   });
 });

@@ -1,3 +1,4 @@
+import { vi, type MockedObject } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuizComponent } from './quiz.component';
@@ -10,28 +11,31 @@ import { SessionService } from '@services/session/session.service';
 describe('QuizComponent', () => {
   let component: QuizComponent;
   let fixture: ComponentFixture<QuizComponent>;
-  let quizServiceMock: jasmine.SpyObj<QuizService>;
-  let sessionServiceMock: jasmine.SpyObj<SessionService>;
+  let quizServiceMock: MockedObject<QuizService>;
+  let sessionServiceMock: MockedObject<SessionService>;
 
   beforeEach(async () => {
-    quizServiceMock = jasmine.createSpyObj('QuizService', [
-      'loadQuizQuestions'
-    ]);
-    sessionServiceMock = jasmine.createSpyObj('SessionService', [
-      'getItem',
-      'setItem',
-      'removeItem'
-    ]);
-
-    // Add both signals to the mock
-    Object.assign(quizServiceMock, {
+    quizServiceMock = {
+      loadQuizQuestions: vi.fn().mockName('QuizService.loadQuizQuestions'),
       quizQuestions: signal([]),
       quizSession: signal({
         currentQuestionIdx: 0,
         score: 0,
         finished: false
-      })
-    });
+      }),
+      alphabet: signal(''),
+      session: vi.fn().mockName('QuizService.session'),
+      getQuizQuestion: vi.fn().mockName('QuizService.getQuizQuestion'),
+      checkAnswer: vi.fn().mockName('QuizService.checkAnswer'),
+      nextQuestion: vi.fn().mockName('QuizService.nextQuestion'),
+      finishQuiz: vi.fn().mockName('QuizService.finishQuiz'),
+      resetQuiz: vi.fn().mockName('QuizService.resetQuiz')
+    } as unknown as MockedObject<QuizService>;
+    sessionServiceMock = {
+      getItem: vi.fn().mockName('SessionService.getItem'),
+      setItem: vi.fn().mockName('SessionService.setItem'),
+      removeItem: vi.fn().mockName('SessionService.removeItem')
+    } as unknown as MockedObject<SessionService>;
 
     await TestBed.configureTestingModule({
       imports: [QuizComponent],
@@ -42,10 +46,6 @@ describe('QuizComponent', () => {
         { provide: SessionService, useValue: sessionServiceMock }
       ]
     }).compileComponents();
-
-    (
-      quizServiceMock as unknown as { quizQuestions: ReturnType<typeof signal> }
-    ).quizQuestions = signal([]);
 
     fixture = TestBed.createComponent(QuizComponent);
     component = fixture.componentInstance;
