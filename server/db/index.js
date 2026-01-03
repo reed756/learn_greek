@@ -1,21 +1,12 @@
-import pg from "pg";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import dotenv from "dotenv";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import pg from 'pg';
 
 const { Pool } = pg;
-const ENV = process.env.NODE_ENV || "development";
 
-const pathToCorrectEnvFile = `${__dirname}/../.env.${ENV}`;
+const isProduction = process.env.NODE_ENV === 'production';
 
-dotenv.config({
-  path: pathToCorrectEnvFile,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: isProduction ? { rejectUnauthorized: false } : false
 });
 
-if (!process.env.PGDATABASE) {
-  throw new Error("No PGDATABASE configured");
-}
-
-export default new Pool();
+export default pool;
