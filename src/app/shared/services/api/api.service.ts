@@ -1,5 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, isDevMode } from '@angular/core';
+import { prodEnvironment } from 'environments/environment.production';
+import { environment } from 'environments/environment.development';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,16 +10,15 @@ import { Observable } from 'rxjs';
 export class ApiService {
   private http = inject(HttpClient);
 
+  private apiUrl = isDevMode() ? environment.apiUrl : prodEnvironment.apiUrl;
+
   public get<T>(url: string, params?: HttpParams): Observable<T> {
-    return this.http.get<T>(url, { params });
+    return this.http.get<T>(this.apiUrl + url, { params });
   }
   public post<T>(url: string, body: T): Observable<T> {
-    return this.http.post<T>(url, body);
+    return this.http.post<T>(this.apiUrl + url, body);
   }
   public patch(url: string, body: unknown): Observable<unknown> {
-    return this.http.patch(url, body);
-  }
-  public delete(url: string): Observable<unknown> {
-    return this.http.delete(url);
+    return this.http.patch(this.apiUrl + url, body);
   }
 }

@@ -1,7 +1,6 @@
 import { inject, Injectable, ResourceRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
 import { ApiService } from '@services/api/api.service';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { Alphabet, AlphabetApiRes } from '@interfaces/alphabet';
@@ -15,7 +14,7 @@ export class AlphabetService {
 
   private getAlphabet(): Observable<Alphabet[]> {
     return this.api
-      .get<AlphabetApiRes>(environment.apiUrl + '/alphabet')
+      .get<AlphabetApiRes>('/alphabet')
       .pipe(map((response) => (response as AlphabetApiRes).characters));
   }
 
