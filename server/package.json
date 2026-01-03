@@ -12,10 +12,10 @@
     }
   },
   "scripts": {
-    "dev": "nodemon --experimental-vm-modules listen.js",
+    "dev": "nodemon --experimental-vm-modules app.js",
     "seed": "node --experimental-vm-modules ./db/seeds/run-seed.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "start": "node --experimental-vm-modules listen.js"  
+    "start": "node --experimental-vm-modules app.js"  
   },
   "author": "",
   "license": "ISC",

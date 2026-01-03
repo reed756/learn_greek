@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import { apiRouter } from './routes/api-router.js';
 const app = express();
+const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
@@ -29,4 +30,6 @@ app.all('*', (req, res) => {
   res.status(404).send({ msg: 'Route not found' });
 });
 
-export default app;
+app.listen(port, () =>
+  console.log(`Backend running on http://localhost:${port}`)
+);
