@@ -14,7 +14,8 @@
   "scripts": {
     "dev": "nodemon --experimental-vm-modules listen.js",
     "seed": "node --experimental-vm-modules ./db/seeds/run-seed.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "start": "node --experimental-vm-modules listen.js"  
   },
   "author": "",
   "license": "ISC",
