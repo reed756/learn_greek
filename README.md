@@ -56,7 +56,7 @@ Start both the server and the UI
 
 **Backend:** Node, Express, Jest
 
-**Database** postgresql
+**Database:** postgresql
 
 ## License
 
