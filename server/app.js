@@ -3,6 +3,10 @@ import express from 'express';
 import { apiRouter } from './routes/api-router.js';
 const app = express();
 const port = process.env.PORT || 3000;
+const allowedOrigins = [
+  'https://learn-greek-language.netlify.app',
+  'http://localhost:4200'
+];
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -14,13 +18,9 @@ app.use(
       }
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE']
-  }),
-  express.json()
+  })
 );
-const allowedOrigins = [
-  'https://learn-greek-language.netlify.app',
-  'http://localhost:4200'
-];
+app.use(express.json());
 
 // API
 app.use('/api', apiRouter);
