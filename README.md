@@ -1,59 +1,68 @@
-# LearnGreek
+## Learn Greek Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.3.
+A full-stack movie search and discovery app built with Angular 21 and Express 4.19.2, with a database using postgresql. Users can revise the Greek Alphabet then quiz themselves on it. They can also post their score on the leaderboard.
 
-## Development server
+## Deployment
 
-To start a local development server, run:
+To build the frontend run:
 
-```bash
-ng serve
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This will compile your project and store the build artifacts in the dist/ directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+## Run Locally
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Clone the project
 
 ```bash
-ng e2e
+  git clone https://github.com/reed756/learn_greek.git
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Go to the server directory
 
-## Additional Resources
+```bash
+  cd server
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start both the server and the UI
+
+```bash
+  npm run dev
+```
+
+## Features
+
+🅰 Learn and Revise the Greek Alphabet
+
+🏅 View Leaderboard and see where you stack up
+
+🎨 Responsive UI using CSS
+
+⚡ Fast, modern Angular 21 frontend with signals and services
+
+🌐 Node.js Express backend for accessing postgres database
+
+## Tech Stack
+
+**Frontend:** Angular, TypeScript, RxJS, Vitest
+
+**Backend:** Node, Express, Jest
+
+**Database** postgresql
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## 🔗 Links
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://james-reed.netlify.app)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/james-an-reed/)
